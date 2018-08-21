@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>photos</title>
+    <link rel="stylesheet" type="text/css" href="./css/photo.css">
+</head>
+<body>
+<div class="container">
+    <p id="info"></p>
+    <div id="outer">
+        <a class="narrow" id="before">&lt;</a>
+        <img id="imgContainer" src="./image/1.jpg" alt="beauty"/>
+        <a class="narrow" id="next">&gt;</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var before = document.getElementById("before");
+        var next = document.getElementById("next");
+        var img = document.getElementById("imgContainer");
+        var imgArr = [ "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg" ];
+        //图片数组
+        var index = 0;
+        var info = document.getElementById("info");
+        info.innerHTML = "一共" + imgArr.length + "张图片，当前第" + (index + 1) + "张";
+        before.onclick = beforeFuc;
+        next.onclick = nextFuc;
+
+        setInterval(function () {
+            nextFuc()
+        }, 2000)
+
+        function beforeFuc () {
+            index--;
+            if (index < 0) {
+                index = imgArr.length - 1;
+            }
+            img.setAttribute('src', "./image/" + imgArr[ index ])
+            info.innerHTML = "一共" + imgArr.length + "张图片，当前第" + (index + 1) + "张";
+        };
+        function nextFuc () {
+            index++;
+            if (index > imgArr.length - 1) {
+                index = 0;
+            }
+            img.setAttribute('src', "./image/" + imgArr[ index ])
+            info.innerHTML = "一共" + imgArr.length + "张图片，当前第" + (index + 1) + "张";
+        };
+    };
+</script>
+</body>
+</html>
